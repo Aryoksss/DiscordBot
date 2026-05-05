@@ -13,9 +13,19 @@ echo "------------------------------------------"
 echo "🚀 Kafka Music Bot - VPS Startup Script"
 echo "------------------------------------------"
 
-# Jalankan Lavalink di background
+# Fungsi untuk mematikan semua proses saat script dihentikan
+cleanup() {
+    echo ""
+    echo "🛑 Stopping Bot and Lavalink..."
+    kill $LAVALINK_PID $BOT_PID 2>/dev/null
+    exit
+}
+
+trap cleanup SIGINT SIGTERM
+
+# Jalankan Lavalink (Log akan muncul di terminal)
 echo "📥 Starting Lavalink Server..."
-java -jar Lavalink.jar > lavalink.log 2>&1 &
+java -jar Lavalink.jar &
 LAVALINK_PID=$!
 
 # Tunggu Lavalink benar-benar siap
@@ -24,18 +34,9 @@ sleep 20
 
 # Jalankan Discord Bot
 echo "🤖 Starting Discord Bot..."
-node index.js
+node index.js &
+BOT_PID=$!
 
-# Fungsi untuk mematikan Lavalink saat script dihentikan
-cleanup() {
-    echo ""
-    echo "🛑 Stopping Lavalink Server (PID: $LAVALINK_PID)..."
-    kill $LAVALINK_PID
-    exit
-}
-
-# Tangkap sinyal interrupt (Ctrl+C)
-trap cleanup SIGINT SIGTERM
-
-# Biarkan script tetap berjalan selama Lavalink aktif
-wait $LAVALINK_PID
+# Biarkan script tetap hidup selama bot berjalan
+wait $BOT_PID
+cleanup
