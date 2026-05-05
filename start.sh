@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# Load environment variables from .env
+# Robust .env loader for Linux
 if [ -f .env ]; then
-    export $(cat .env | grep -v '#' | xargs)
+    while IFS= read -r line || [ -n "$line" ]; do
+        [[ "$line" =~ ^#.*$ ]] && continue
+        [[ -z "$line" ]] && continue
+        export "$line"
+    done < .env
 fi
 
 echo "------------------------------------------"
-echo "🚀 Kaleg Music Bot - VPS Startup Script"
+echo "🚀 Kafka Music Bot - VPS Startup Script"
 echo "------------------------------------------"
 
 # Jalankan Lavalink di background
