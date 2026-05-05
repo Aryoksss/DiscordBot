@@ -59,6 +59,9 @@ client.on("interactionCreate", async (interaction) => {
         }
 
         try {
+            // Early defer for play command to prevent timeout
+            if (interaction.commandName === "play") await interaction.deferReply();
+            
             await command.execute(interaction, client);
         } catch (error) {
             console.error(error);

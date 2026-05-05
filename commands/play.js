@@ -14,10 +14,8 @@ module.exports = {
         const voiceChannel = interaction.member.voice.channel;
 
         if (!voiceChannel) {
-            return interaction.reply({ content: "You need to be in a voice channel to play music!", flags: [64] });
+            return interaction.editReply({ content: "You need to be in a voice channel to play music!" });
         }
-
-        await interaction.deferReply();
 
         let player = client.kazagumo.players.get(interaction.guild.id);
 
