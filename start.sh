@@ -1,17 +1,37 @@
 #!/bin/bash
 
-# Pastikan Java 21 sudah terinstall
-echo "Starting Lavalink Server..."
+# Load environment variables from .env
+if [ -f .env ]; then
+    export $(cat .env | grep -v '#' | xargs)
+fi
+
+echo "------------------------------------------"
+echo "🚀 Kaleg Music Bot - VPS Startup Script"
+echo "------------------------------------------"
+
 # Jalankan Lavalink di background
-java -jar Lavalink.jar &
+echo "📥 Starting Lavalink Server..."
+java -jar Lavalink.jar > lavalink.log 2>&1 &
 LAVALINK_PID=$!
 
-echo "Waiting for Lavalink to warm up (10s)..."
-sleep 10
+# Tunggu Lavalink benar-benar siap
+echo "⏳ Waiting for Lavalink to warm up (20 seconds)..."
+sleep 20
 
-echo "Starting Discord Bot..."
-# Jalankan bot
+# Jalankan Discord Bot
+echo "🤖 Starting Discord Bot..."
 node index.js
 
-# Saat bot dimatikan (Ctrl+C), matikan juga Lavalink
-kill $LAVALINK_PID
+# Fungsi untuk mematikan Lavalink saat script dihentikan
+cleanup() {
+    echo ""
+    echo "🛑 Stopping Lavalink Server (PID: $LAVALINK_PID)..."
+    kill $LAVALINK_PID
+    exit
+}
+
+# Tangkap sinyal interrupt (Ctrl+C)
+trap cleanup SIGINT SIGTERM
+
+# Biarkan script tetap berjalan selama Lavalink aktif
+wait $LAVALINK_PID

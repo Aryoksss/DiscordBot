@@ -52,6 +52,12 @@ client.on("interactionCreate", async (interaction) => {
     if (interaction.isChatInputCommand()) {
         const command = client.commands.get(interaction.commandName);
         if (!command) return;
+
+        // Check if Lavalink Node is connected
+        if (!client.kazagumo.shoukaku.nodes.size || [...client.kazagumo.shoukaku.nodes.values()].every(node => node.state !== 1)) {
+            return interaction.reply({ content: "⚠️ Lavalink is not ready yet. Please wait a few seconds and try again.", flags: [64] });
+        }
+
         try {
             await command.execute(interaction, client);
         } catch (error) {
