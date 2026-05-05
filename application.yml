@@ -37,11 +37,11 @@ lavalink:
     youtubeSearchEnabled: true
     soundcloudSearchEnabled: true
     gc-warnings: true
-    # ratelimit:
-    #   strategy: "NanoIpRoutePlanner"
-    #   ipBlock: "2604:a880:800:14:0:2:e7af:2000/124"
-    #   excludedIps: []
-    #   retryLimit: -1
+    ratelimit:
+      strategy: "NanoIpRoutePlanner"
+      ipBlock: "2604:a880:800:14:0:2:e7af:2000/124"
+      excludedIps: []
+      retryLimit: -1
 
 plugins:
   youtube:
