@@ -1,0 +1,22 @@
+{
+  "name": "botdiscord",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
+    "kazagumo": "^3.4.3",
+    "kazagumo-spotify": "^2.1.1",
+    "play-dl": "^1.9.7",
+    "shoukaku": "^4.3.0",
+    "spotify-url-info": "^3.3.0",
+    "undici": "^8.2.0"
+  }
+}

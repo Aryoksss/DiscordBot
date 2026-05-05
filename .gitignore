@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+
+# Lavalink
+Lavalink.jar
+logs/
+plugins/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Others
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
