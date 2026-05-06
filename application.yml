@@ -50,9 +50,9 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - TVHTML5
-      - ANDROID_TESTSUITE
-      - ANDROID_VR
+      - MUSIC
+      - ANDROID_MUSIC
+      - ANDROID
       - WEB
     oauth:
       enabled: true
