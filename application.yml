@@ -38,10 +38,10 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      ipBlocks: ["2400:6180:0:d2::/64"]
-      strategy: "RotateOnBan"
-      searchTriggersFail: true
-      retryLimit: -1
+      # ipBlocks: ["2400:6180:0:d2::/64"]
+      # strategy: "RotateOnBan"
+      # searchTriggersFail: true
+      # retryLimit: -1
       httpProxy: "${LAVALINK_PROXY:}"
 
 plugins:
