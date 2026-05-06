@@ -39,7 +39,7 @@ lavalink:
     gc-warnings: true
     ratelimit:
       ipBlocks: ["2400:6180:0:d2:0:2:dad3:f000/124"]
-      strategy: "NanoIpRoutePlanner"
+      strategy: "RotatingNanoIpRoutePlanner"
       searchTriggersFail: true
       retryLimit: -1
 
