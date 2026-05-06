@@ -41,7 +41,7 @@ lavalink:
       ipBlocks: ["2400:6180:0:d2:0:2:dad3:f000/124"]
       strategy: "RotateOnBan"
       searchTriggersFail: true
-      retryLimit: -1
+      retryLimit: 5
 
 plugins:
   youtube:
