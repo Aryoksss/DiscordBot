@@ -51,10 +51,16 @@ module.exports = {
             }
         }
 
-        const result = await client.kazagumo.search(searchQuery, { requester: interaction.user });
+        let result = await client.kazagumo.search(searchQuery, { requester: interaction.user });
+
+        // Fallback to SoundCloud if YouTube returns no results and it's not a URL
+        if (!result.tracks.length && !searchQuery.startsWith("http")) {
+            console.log(`YouTube search failed for: ${searchQuery}. Trying SoundCloud...`);
+            result = await client.kazagumo.search(`scsearch:${searchQuery}`, { requester: interaction.user });
+        }
 
         if (!result.tracks.length) {
-            return interaction.editReply("No results found.");
+            return interaction.editReply("No results found on YouTube or SoundCloud.");
         }
 
         if (result.type === "PLAYLIST") {
