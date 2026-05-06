@@ -101,6 +101,27 @@ client.on("interactionCreate", async (interaction) => {
     }
 });
 
+client.on("voiceStateUpdate", (oldState, newState) => {
+    const player = client.kazagumo.players.get(oldState.guild.id);
+    if (!player) return;
+
+    const voiceChannel = oldState.guild.channels.cache.get(player.voiceId);
+    if (voiceChannel && voiceChannel.members.filter(m => !m.user.bot).size === 0) {
+        if (player.data.get("247")) return;
+
+        setTimeout(() => {
+            const currentSubPlayer = client.kazagumo.players.get(oldState.guild.id);
+            if (!currentSubPlayer) return;
+            const currentVC = oldState.guild.channels.cache.get(currentSubPlayer.voiceId);
+            if (currentVC && currentVC.members.filter(m => !m.user.bot).size === 0 && !currentSubPlayer.data.get("247")) {
+                currentSubPlayer.destroy();
+                const channel = client.channels.cache.get(currentSubPlayer.textId);
+                if (channel) channel.send("👋 Meninggalkan voice channel karena kosong.");
+            }
+        }, 30000);
+    }
+});
+
 kazagumo.shoukaku.on("ready", (name) => console.log(`Lavalink Node: [${name}] is now connected.`));
 kazagumo.shoukaku.on("error", (name, error) => console.log(`Lavalink Node: [${name}] has an error: ${error}`));
 kazagumo.shoukaku.on("close", (name, code, reason) => console.log(`Lavalink Node: [${name}] closed with code [${code}], reason: [${reason}]`));
@@ -186,8 +207,8 @@ kazagumo.on("playerEmpty", async (player) => {
 
     if (channel) channel.send("📭 The queue is empty.");
     
-    // Check 24/7 mode
-    if (player.data.get("247")) return;
+    // Check 24/7 mode (handle undefined/null as false)
+    if (player.data.get("247") === true) return;
     
     player.destroy();
     
