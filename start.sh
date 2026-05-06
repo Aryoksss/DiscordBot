@@ -25,7 +25,7 @@ trap cleanup SIGINT SIGTERM
 
 # Jalankan Lavalink (Log akan muncul di terminal)
 echo "📥 Starting Lavalink Server..."
-# Jalankan Polos tanpa Proxy, paksa pakai jalur IPv6 murni (NAT64)
+# Jalankan pakai jalur Google DNS64 (Sakti buat IPv6-only)
 java -Djava.net.preferIPv6Addresses=true -Duser.language=en -Duser.country=US -jar Lavalink.jar &
 LAVALINK_PID=$!
 
