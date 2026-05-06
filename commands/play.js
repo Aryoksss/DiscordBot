@@ -51,12 +51,17 @@ module.exports = {
             }
         }
 
-        // Search on YouTube first
-        let result = await client.kazagumo.search(searchQuery, { requester: interaction.user });
+        // 1. Try YouTube Music first (Best for VPS)
+        let result = await client.kazagumo.search(searchQuery, { requester: interaction.user, engine: "youtube_music" });
 
-        // Fallback to SoundCloud if YouTube returns no results and it's not a URL
+        // 2. If YT Music is empty, try standard YouTube
+        if (!result.tracks.length) {
+            result = await client.kazagumo.search(searchQuery, { requester: interaction.user, engine: "youtube" });
+        }
+
+        // 3. If both are empty, fallback to SoundCloud
         if (!result.tracks.length && !searchQuery.startsWith("http")) {
-            console.log(`YouTube search failed for: ${searchQuery}. Trying SoundCloud...`);
+            console.log(`YouTube/Music search failed for: ${searchQuery}. Trying SoundCloud...`);
             result = await client.kazagumo.search(searchQuery, { requester: interaction.user, engine: "soundcloud" });
         }
 
