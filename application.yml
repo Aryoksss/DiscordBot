@@ -47,17 +47,14 @@ lavalink:
 plugins:
   youtube:
     enabled: true
-    pot:
-      token: "Iggt6C3pRBLZeg=="
-      visitorData: "CgtQdDF0bnMzeVNSOCib6evPBjIKCgJJRBIEGgAgK2LfAgrcAjE4LllUPUFybER5dnJueU1BeGoxRXh3ZlJhcVRfUF83SjlHc2d3MXhtc0VUaEZFcndia2ZZYlJRTTlTcTJhV1NhQVZyNlFKM1ZVZmxaU3BmR0QtVnhiZFp1Z1c0V3RhQks1Wld5RnBDQV9YZlM3RWRfWjNmX2JuQkVvZ1pWUk5JNmNXZVFjc3BxdlpxOUtEVmpoRWVaQ1JTcFdtcGU4ZXpvaDM5RmtHWTd1VkdLZ1AzdFRmOGpkTndQdDRoN1NrcTdKd3M2TkRPUjdVQzBCS3BaR1pJV1lVZnREdElyVlBvUEVPdUZPMF9pNm5Pb1NURXI4MnFEYm9nNFkzdkh2T29oQ09OY3dUTU90V0dZZ3NfZTdiS0VRZ0VBSUVSZWltakZYWEpkZjIyREs5RTYwRkxQTE5sNEhIdG9oQVRoekFBa0g5VFBCRTc0eXhaZlAycHFOeS1MRVRMd0JOUQ=="
     region: "ID"
     language: "id"
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - WEB
-      - TV
+      - MWEB
+      - TVHTML5
       - ANDROID_VR
     oauth:
       enabled: true
