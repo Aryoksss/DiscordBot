@@ -47,8 +47,8 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
+      - IOS
       - ANDROID_VR
-      - ANDROID
       - MWEB
       - MUSIC
       - WEB
