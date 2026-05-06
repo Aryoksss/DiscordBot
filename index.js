@@ -150,16 +150,21 @@ kazagumo.on("playerStart", (player, track) => {
         .setThumbnail(track.thumbnail)
         .setFooter({ text: `Requested by ${track.requester.tag}`, iconURL: track.requester.displayAvatarURL() });
 
-    const row = new ActionRowBuilder()
+    const row1 = new ActionRowBuilder()
         .addComponents(
             new ButtonBuilder().setCustomId("pause").setEmoji("⏯️").setStyle(ButtonStyle.Secondary),
             new ButtonBuilder().setCustomId("skip").setEmoji("⏭️").setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder().setCustomId("autoplay").setEmoji("📻").setStyle(ButtonStyle.Primary),
-            new ButtonBuilder().setCustomId("247").setEmoji("⏳").setStyle(ButtonStyle.Success),
             new ButtonBuilder().setCustomId("stop").setEmoji("⏹️").setStyle(ButtonStyle.Danger),
         );
 
-    channel.send({ embeds: [embed], components: [row] }).then(msg => {
+    const row2 = new ActionRowBuilder()
+        .addComponents(
+            new ButtonBuilder().setCustomId("repeat").setEmoji("🔁").setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder().setCustomId("autoplay").setEmoji("📻").setStyle(player.data.get("autoplay") ? ButtonStyle.Primary : ButtonStyle.Secondary),
+            new ButtonBuilder().setCustomId("247").setEmoji("⏳").setStyle(player.data.get("247") ? ButtonStyle.Success : ButtonStyle.Secondary),
+        );
+
+    channel.send({ embeds: [embed], components: [row1, row2] }).then(msg => {
         player.data.set("nowPlayingMsg", msg);
     });
     
@@ -176,31 +181,35 @@ kazagumo.on("playerStart", (player, track) => {
 kazagumo.on("playerEmpty", async (player) => {
     const channel = client.channels.cache.get(player.textId);
     
-    // Smart Autoplay Logic (YouTube Recommendations)
+    // Ultra-Smart Autoplay Logic (Using YouTube Mix RD Algorithm)
     if (player.data.get("autoplay")) {
         const lastTrack = player.data.get("lastTrack");
-        if (lastTrack && lastTrack.uri) {
+        if (lastTrack && lastTrack.identifier) {
             try {
-                // Get real YouTube recommendations using play-dl
-                const videoInfo = await play.video_info(lastTrack.uri);
-                const related = videoInfo.related_videos;
+                // Search for YouTube Mix (RD Playlist) - This is what YouTube uses for "Up Next"
+                const mixUrl = `https://www.youtube.com/watch?v=${lastTrack.identifier}&list=RD${lastTrack.identifier}`;
+                const result = await client.kazagumo.search(mixUrl, { requester: client.user });
+                
+                if (result.tracks.length > 1) {
+                    // Filter out the last track if it's the first in the mix
+                    let nextTrack = result.tracks.find(t => t.identifier !== lastTrack.identifier);
+                    
+                    // If not found or only 1 track, pick a random one from the mix (excluding first)
+                    if (!nextTrack) nextTrack = result.tracks[Math.floor(Math.random() * (result.tracks.length - 1)) + 1];
 
-                if (related && related.length > 0) {
-                    // Pick a random song from top 5 recommendations for variety
-                    const randomIndex = Math.floor(Math.random() * Math.min(related.length, 5));
-                    const nextUrl = related[randomIndex];
-                    
-                    const result = await client.kazagumo.search(nextUrl, { requester: client.user });
-                    
-                    if (result.tracks.length) {
-                        player.queue.add(result.tracks[0]);
-                        player.play();
-                        return;
-                    }
+                    player.queue.add(nextTrack);
+                    player.play();
+                    return;
                 }
             } catch (e) {
-                console.error("Autoplay Error:", e);
-                if (channel) channel.send("⚠️ Autoplay failed to find recommendation.");
+                console.error("Autoplay Mix Error:", e);
+                // Ultra Fallback: Search for Artist + "related" on YouTube Music
+                const fallbackResult = await client.kazagumo.search(`ytmsearch:${lastTrack.author} related`, { requester: client.user });
+                if (fallbackResult.tracks.length > 2) {
+                    player.queue.add(fallbackResult.tracks[Math.floor(Math.random() * 3) + 1]);
+                    player.play();
+                    return;
+                }
             }
         }
     }
