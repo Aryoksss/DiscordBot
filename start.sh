@@ -25,7 +25,8 @@ trap cleanup SIGINT SIGTERM
 
 # Jalankan Lavalink (Log akan muncul di terminal)
 echo "📥 Starting Lavalink Server..."
-java -Duser.language=id -Duser.country=ID -jar Lavalink.jar &
+# Kita pakai SOCKS5 WARP sebagai jembatan ke dunia luar karena VPS ini IPv6-Only
+java -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=40000 -Duser.language=id -Duser.country=ID -jar Lavalink.jar &
 LAVALINK_PID=$!
 
 # Tunggu Lavalink benar-benar siap
