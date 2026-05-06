@@ -38,7 +38,7 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      httpProxy: "${LAVALINK_PROXY:}"
+      # Jalur Polos Aktif
 
 plugins:
   youtube:
