@@ -4,7 +4,7 @@ server:
 
 lavalink:
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.3"
   server:
     password: "${LAVALINK_PASS}"
     sources:
@@ -50,9 +50,8 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - MUSIC
-      - ANDROID_MUSIC
-      - ANDROID
+      - TVHTML5EMBEDDED
+      - ANDROID_TESTSUITE
       - WEB
     oauth:
       enabled: true
