@@ -1,4 +1,4 @@
-# 🎵 Kaleg Music Bot
+# 🎵 Kafka Music Bot
 
 Bot musik Discord premium yang dibangun dengan **Node.js**, **Lavalink v4**, dan **Kazagumo**. Dirancang untuk stabilitas tinggi, kualitas audio jernih, dan fitur cerdas seperti YouTube Autoplay & Spotify Integration.
 
