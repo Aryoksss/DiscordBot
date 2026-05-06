@@ -50,12 +50,12 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - TVHTML5_SIMPLY
+      - TVHTML5
       - ANDROID_VR
       - WEB
     oauth:
       enabled: true
-      refreshToken: ""
-      # skipValidation: true
+      refreshToken: "1//0gI39PyfQXSH0CgYIARAAGBASNwF-L9IrK-MlU7wH-eS1rw2--uNdYZ_9PElppS9q3g63OQVcFfYk7rAgZXXeSZtjmmcXtQy3oFY"
       skipValidation: true
 
 metrics:
