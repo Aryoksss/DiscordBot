@@ -1,6 +1,6 @@
 server:
   port: 2333
-  address: 0.0.0.0
+  address: ::
 
 lavalink:
   plugins:
@@ -38,10 +38,6 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      ipBlocks: ["2407:6ac0:3:9d:abcd::/64"]
-      strategy: "RotateOnBan"
-      searchTriggersFail: true
-      retryLimit: -1
       httpProxy: "${LAVALINK_PROXY:}"
 
 plugins:
@@ -53,8 +49,8 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - MWEB
-      - TVHTML5
+      - WEB
+      - TV
       - ANDROID_VR
     oauth:
       enabled: true
