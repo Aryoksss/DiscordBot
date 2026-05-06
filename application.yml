@@ -50,8 +50,8 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
+      - TVHTML5
       - ANDROID_TESTSUITE
-      - TVHTML5EMBEDDED
       - ANDROID_VR
       - WEB
     oauth:
