@@ -50,12 +50,13 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - WEB
-      - ANDROID_VR
+      - ANDROID_TESTSUITE
       - TVHTML5EMBEDDED
+      - ANDROID_VR
+      - WEB
     oauth:
       enabled: true
-      refreshToken: "1//014I0roJZwcZGCgYIARAAGAESNwF-L9IrbYBhuJ3iV36t0qBnHjcLXY4jfarn-395dr0Sek5330Eex7_88xlvoZvwAZL8YAQV_dk"
+      refreshToken: "1//0gL9P_cj-C8uRCgYIARAAGBASNwF-L9Ir5orBep3kN0_gFhp6jEmCwrEDE-d5DqlhiKF9Hc3vmjhIuRNg7QVBCM_sbSXsiqPhpec"
       skipValidation: true
 
 metrics:
