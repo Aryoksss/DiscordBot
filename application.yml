@@ -54,7 +54,8 @@ plugins:
       - WEB
     oauth:
       enabled: true
-      refreshToken: "1//0gL9P_cj-C8uRCgYIARAAGBASNwF-L9Ir5orBep3kN0_gFhp6jEmCwrEDE-d5DqlhiKF9Hc3vmjhIuRNg7QVBCM_sbSXsiqPhpec"
+      refreshToken: ""
+      # skipValidation: true
       skipValidation: true
 
 metrics:
