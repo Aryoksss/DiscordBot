@@ -47,11 +47,9 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - IOS
+      - WEBEMBEDDED
+      - ANDROID_TESTSUITE
       - ANDROID_VR
-      - MWEB
-      - MUSIC
-      - WEB
       - TV
     oauth:
       enabled: true
