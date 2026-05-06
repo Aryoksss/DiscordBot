@@ -191,11 +191,19 @@ kazagumo.on("playerEmpty", async (player) => {
                 const result = await client.kazagumo.search(mixUrl, { requester: client.user });
                 
                 if (result.tracks.length > 1) {
-                    // Filter out the last track if it's the first in the mix
-                    let nextTrack = result.tracks.find(t => t.identifier !== lastTrack.identifier);
+                    // Smart Variety: Try to find a track with a DIFFERENT artist first
+                    let nextTrack = result.tracks.find(t => 
+                        t.identifier !== lastTrack.identifier && 
+                        t.author.toLowerCase() !== lastTrack.author.toLowerCase()
+                    );
                     
-                    // If not found or only 1 track, pick a random one from the mix (excluding first)
-                    if (!nextTrack) nextTrack = result.tracks[Math.floor(Math.random() * (result.tracks.length - 1)) + 1];
+                    // If no different artist found in the mix, just pick the next one that isn't the same track
+                    if (!nextTrack) {
+                        nextTrack = result.tracks.find(t => t.identifier !== lastTrack.identifier);
+                    }
+                    
+                    // Final fallback: Pick a random one from top 10 for maximum variety
+                    if (!nextTrack) nextTrack = result.tracks[Math.floor(Math.random() * Math.min(result.tracks.length, 10))];
 
                     player.queue.add(nextTrack);
                     player.play();
