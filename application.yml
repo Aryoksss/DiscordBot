@@ -38,12 +38,10 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      ipBlock:
-        type: "IPv6Block"
-        ipBlock: "2400:6180:0:d2:0:2:dad3:f000/124"
+      ipBlocks: ["2400:6180:0:d2:0:2:dad3:f000/124"]
       strategy: "NanoIpRoutePlanner"
+      searchTriggersFail: true
       retryLimit: -1
-      excludedIps: []
 
 plugins:
   youtube:
@@ -52,10 +50,9 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - MUSIC
-      - ANDROID_VR
       - WEB
-      - TVHTML5EMBEDDED
+      - ANDROID_VR
+      - TVHTML5
     oauth:
       enabled: true
       refreshToken: "1//014I0roJZwcZGCgYIARAAGAESNwF-L9IrbYBhuJ3iV36t0qBnHjcLXY4jfarn-395dr0Sek5330Eex7_88xlvoZvwAZL8YAQV_dk"
