@@ -37,8 +37,7 @@ lavalink:
     youtubeSearchEnabled: true
     soundcloudSearchEnabled: true
     gc-warnings: true
-    ratelimit:
-      # Jalur Polos Aktif
+    # Ratelimit dinonaktifkan
 
 plugins:
   youtube:
