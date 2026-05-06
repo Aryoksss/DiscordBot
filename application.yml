@@ -52,7 +52,7 @@ plugins:
       - ANDROID_VR
     oauth:
       enabled: true
-      refreshToken: "1//0gI39PyfQXSH0CgYIARAAGBASNwF-L9IrK-MlU7wH-eS1rw2--uNdYZ_9PElppS9q3g63OQVcFfYk7rAgZXXeSZtjmmcXtQy3oFY"
+      refreshToken: ""
       skipValidation: true
 
 metrics:
