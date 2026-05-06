@@ -26,7 +26,8 @@ trap cleanup SIGINT SIGTERM
 # Jalankan Lavalink (Log akan muncul di terminal)
 echo "📥 Starting Lavalink Server..."
 # Paksa Java pakai jalur IPv6 karena VPS ini IPv6-Only
-java -Djava.net.preferIPv6Addresses=true -Duser.language=id -Duser.country=ID -jar Lavalink.jar &
+# Java akan pakai jalur SOCKS5 WARP (port 40000) untuk tembus ke IPv4, tapi tetap prefer IPv6 untuk koneksi lokal
+java -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=40000 -Djava.net.preferIPv6Addresses=true -Duser.language=en -Duser.country=US -jar Lavalink.jar &
 LAVALINK_PID=$!
 
 # Tunggu Lavalink benar-benar siap
