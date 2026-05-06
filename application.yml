@@ -38,7 +38,7 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      httpProxy: "socks5://127.0.0.1:4000"
+      httpProxy: "socks5://127.0.0.1:40000"
       # strategy: RotateOnBan # Strategy remains disabled for now as proxy is preferred
     #   retryLimit: 5
 
