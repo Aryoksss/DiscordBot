@@ -38,11 +38,18 @@ lavalink:
     soundcloudSearchEnabled: true
     gc-warnings: true
     ratelimit:
-      httpProxy: "${LAVALINK_PROXY:}" # Set as socks5://127.0.0.1:40000 in .env for VPS
+      ipBlocks: ["2400:6180:0:d2::/64"]
+      strategy: "RotateOnBan"
+      searchTriggersFail: true
+      retryLimit: -1
+      httpProxy: "${LAVALINK_PROXY:}"
 
 plugins:
   youtube:
     enabled: true
+    # pot:
+    #   token: "DIISI_NANTI"
+    #   visitorData: "DIISI_NANTI"
     region: "ID"
     language: "id"
     allowSearch: true
