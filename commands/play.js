@@ -51,11 +51,17 @@ module.exports = {
             }
         }
 
-        let result = await client.kazagumo.search(searchQuery, { requester: interaction.user });
+        // Coba cari di YouTube Music dulu (lebih aman untuk VPS)
+        let result = await client.kazagumo.search(searchQuery, { requester: interaction.user, engine: "youtube_music" });
 
-        // Fallback to SoundCloud if YouTube returns no results and it's not a URL
+        // Jika YouTube Music kosong, coba YouTube biasa
         if (!result.tracks.length && !searchQuery.startsWith("http")) {
-            console.log(`YouTube search failed for: ${searchQuery}. Trying SoundCloud...`);
+            result = await client.kazagumo.search(searchQuery, { requester: interaction.user });
+        }
+
+        // Fallback to SoundCloud if everything else fails and it's not a URL
+        if (!result.tracks.length && !searchQuery.startsWith("http")) {
+            console.log(`YouTube/Music search failed for: ${searchQuery}. Trying SoundCloud...`);
             result = await client.kazagumo.search(searchQuery, { requester: interaction.user, engine: "soundcloud" });
         }
 
