@@ -1,6 +1,6 @@
 server:
   port: 2333
-  address: ::
+  address: "::"
 
 lavalink:
   plugins:
