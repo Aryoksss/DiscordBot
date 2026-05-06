@@ -48,11 +48,14 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
+      - WEB
+      - MWEB
+      - IOS
       - TV
       - ANDROID_VR
     oauth:
       enabled: true
-      refreshToken: ""
+      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
       skipValidation: true
 
 metrics:
