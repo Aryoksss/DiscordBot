@@ -25,7 +25,7 @@ trap cleanup SIGINT SIGTERM
 
 # Jalankan Lavalink (Log akan muncul di terminal)
 echo "📥 Starting Lavalink Server..."
-java -jar Lavalink.jar &
+java -Duser.language=id -Duser.country=ID -jar Lavalink.jar &
 LAVALINK_PID=$!
 
 # Tunggu Lavalink benar-benar siap
