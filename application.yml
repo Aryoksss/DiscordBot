@@ -44,6 +44,7 @@ plugins:
   youtube:
     enabled: true
     region: "ID"
+    language: "id"
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
