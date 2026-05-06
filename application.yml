@@ -52,7 +52,7 @@ plugins:
     clients:
       - WEB
       - ANDROID_VR
-      - TVHTML5
+      - TVHTML5EMBEDDED
     oauth:
       enabled: true
       refreshToken: "1//014I0roJZwcZGCgYIARAAGAESNwF-L9IrbYBhuJ3iV36t0qBnHjcLXY4jfarn-395dr0Sek5330Eex7_88xlvoZvwAZL8YAQV_dk"
