@@ -37,10 +37,8 @@ lavalink:
     youtubeSearchEnabled: true
     soundcloudSearchEnabled: true
     gc-warnings: true
-    # ratelimit:
-    #   httpProxy: "socks5://127.0.0.1:40000"
-    #   strategy: RotateOnBan
-    #   retryLimit: 5
+    ratelimit:
+      httpProxy: "${LAVALINK_PROXY:}" # Set as socks5://127.0.0.1:40000 in .env for VPS
 
 plugins:
   youtube:
