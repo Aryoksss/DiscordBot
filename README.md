@@ -57,4 +57,4 @@ Saat pertama kali menjalankan bot, cek terminal Lavalink untuk mendapatkan **Kod
 Silakan buka **Issue** atau kirim **Pull Request** untuk pengembangan lebih lanjut.
 
 ---
-*Powered by Kaleg Music Bot*
+*Powered by Kafka Music Bot*
